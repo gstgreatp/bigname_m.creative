@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bigname_M | contact</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+ <nav class="navbar">
+        <div class="logo">Bigname_M</div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">portfolio</a></li>
+          <li><a href="contact.html" class="nav-btn">Get a Quote</a></li>
+        </ul>
+      </nav>
+      <section class="contact-page">
+    <h2>Let's Start Your Project</h2>
+    <p>Tell us about your goals and we'll get back to you with a custom quote.</p>
+   <form action="https://formspree.io/f/mjgazerz" method="POST">
+  <div class="form-group">
+    <label>Full Name</label>
+    <input type="text" name="name" placeholder="Full Name" required>
+  </div>
+
+  <div class="form-group">
+    <label>Email Address</label>
+    <input type="email" name="email" placeholder="Email Address" required>
+  </div>
+
+  <div class="form-group">
+    <label>Project Type</label>
+    <select name="project_type">
+      <option value="Web Design">Web Design</option>
+      <option value="SEO Audit">SEO Audit</option>
+      <option value="Smart Invites">Smart Invites</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Message</label>
+    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+  </div>
+<input type="hidden" name="_next" value="https://gstgreatp.github.io/bigname_m.creative/thank-you.html">
+  <button type="submit" class="submit-btn">Send Request</button>
+</form>
+</section>
