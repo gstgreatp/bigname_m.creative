@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naira-Wise | Anti-Inflation Tracker</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#00A651">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="app-shell">
+    <h1>Naira-Wise</h1>
+    <p>Beat Inflation 📈</p>
+
+    <div id="tip-container" style="background: rgba(0, 166, 81, 0.1); border: 1px solid var(--primary-green); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+        <small style="color: var(--primary-green); font-weight: bold; text-transform: uppercase;">💡 Pro-Tip</small>
+        <p id="daily-tip" style="margin: 5px 0 0 0; font-size: 0.9rem; color: #ccc;"></p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <small>Spent Today</small>
+            <h2 id="today-total">₦0.00</h2>
+        </div>
+        <div class="stat-card">
+            <small>Naira Erosion</small>
+            <h2>15.06%</h2>
+        </div>
+    </div>
+
+    <div class="log-section" style="border-top: 4px solid var(--primary-green); margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <span style="font-size: 0.8rem; color: #888;">Set Budget: ₦</span>
+            <input type="number" id="budget-limit-input" placeholder="e.g. 200000" 
+                   style="width: 120px; padding: 8px; margin: 0; background: #111; border: 1px solid #444; color: white; border-radius: 5px;">
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <small style="font-weight: bold;">Monthly Limit</small>
+            <small id="budget-percent" style="font-weight: bold; color: var(--primary-green);">0%</small>
+        </div>
+
+        <div style="width: 100%; background: #333; height: 14px; border-radius: 20px; overflow: hidden; border: 1px solid #444;">
+            <div id="progress-fill" style="width: 0%; height: 100%; background: var(--primary-green); transition: width 0.6s ease-in-out;"></div>
+        </div>
+    </div>
+
+    <section class="log-section">
+        <h3>Quick Log</h3>
+        <div class="input-group">
+            <input type="number" id="amount" placeholder="Amount (₦)">
+            <select id="category">
+                <option value="Generator Fuel">⛽ Generator Fuel</option>
+                <option value="Food">🍲 Food & Groceries</option>
+                <option value="Data/Airtime">📱 Data & Airtime</option>
+                <option value="Transport">🚕 Transport</option>
+                <option value="Business Stock">📦 Business Stock</option>
+            </select>
+            <button id="add-btn">Log Expense</button>
+        </div>
+    </section>
+
+    <section id="gen-section" class= "log-section" style="border-top: 4px solid #FF8C00;">
+        <h3>⛽ Gen-Fuel Predictor</h3>
+        <div class="input-group">
+            <input type="number" id="gen-liters" placeholder="Liters used per hour" step="0.1">
+            <input type="number" id="gen-hours" placeholder="Hours run per day">
+            <input type="number" id="fuel-price" placeholder="Current PMS Price (₦/L)">
+            <button id="calc-gen-btn" style="background: #FF8C00;">Calculate Monthly Cost</button>
+        </div>
+        <div id="gen-result"></div>
+    </section>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; margin-bottom: 10px;">
+    <h2 style="margin:0;">Activity</h2>
+    <div style="display: flex; gap: 10px;">
+        <a id="whatsapp-btn" target="_blank" style="background: #25D366; padding: 10px 15px; border-radius: 8px; color: white; text-decoration: none; display: inline-flex; align-items: center; font-size: 0.8rem; font-weight: bold; border: none; cursor: pointer;">
+            Share 💬
+        </a>
+        <button onclick="clearData()" class="clear-btn" style="margin:0;">Clear</button>
+    </div>
+</div>
+
+    <ul id="expense-list" style="padding:0; list-style:none;">
+    </ul>
+</main>
+
+<footer style="text-align: center; margin-top: 40px; padding-bottom: 20px; border-top: 1px solid #333; padding-top: 20px;">
+    <p style="font-size: 0.8rem; color: #666;">Developed by</p>
+    <a href="#" style="color: var(--primary-green); text-decoration: none; font-weight: bold; font-size: 1rem;">
+        Bigname_M Creative 🚀
+    </a>
+</footer>
+
+<nav class="bottom-nav">
+    <a href="#" class="nav-item active"><span>🏠</span>Home</a>
+    <a href="javascript:void(0)" onclick="showInsights()" class="nav-item"><span>📊</span>Insights</a>
+
+<a href="javascript:void(0)" onclick="showGenPredict()" class="nav-item"><span>⛽</span>Gen-Predict</a>
+</nav>
+
+<div id="insights-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:2000; padding:20px; box-sizing:border-box;">
+    <div style="background:#252525; padding:20px; border-radius:20px; border:1px solid var(--primary-green); margin-top:50px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2 style="margin:0;">Expense Insights</h2>
+            <button onclick="closeInsights()" style="background:none; color:white; border:none; font-size:1.5rem;">×</button>
+        </div>
+        <hr style="border:0.5px solid #333; margin:15px 0;">
+        <div id="insights-content"></div>
+        <button onclick="closeInsights()" style="margin-top:20px;">Close</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
