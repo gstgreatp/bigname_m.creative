@@ -1,0 +1,122 @@
+:root {
+    --primary-green: #00A651; /* Naira Green for trust */
+    --warm-orange: #FF8C00;   /* Warning color for Erosion/Gen-Tax */
+    --bg-dark: #1A1A1A;
+    --card: #252525;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+    padding-bottom: 90px; /* Space for bottom nav */
+}
+
+.app-shell {
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Stats Cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+/* Input Sections */
+.log-section {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select, button {
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+}
+
+input, select {
+    background: #111;
+    color: white;
+    border: 1px solid #444;
+}
+
+button {
+    background: var(--primary-green);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* List Items */
+.expense-item {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--primary-green);
+}
+
+.clear-btn {
+    background: transparent;
+    border: 1px solid #555;
+    color: #888;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+/* --- BOTTOM NAVIGATION BAR --- */
+.bottom-nav {
+    position: fixed;     /* This keeps it at the very bottom of the screen */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: #111111; /* Solid black for the nav bar */
+    display: flex;       /* Use Flexbox to align items in a row */
+    justify-content: space-around; /* Spreads the 3 icons out evenly */
+    align-items: center;
+    border-top: 1px solid #333;
+    z-index: 1000;       /* Ensures it stays on top of other elements */
+}
+
+.nav-item {
+    text-decoration: none; /* Removes the blue underline */
+    color: #888888;       /* Gray for inactive icons */
+    display: flex;
+    flex-direction: column; /* Puts the Emoji above the Text */
+    align-items: center;
+    font-size: 0.75rem;
+    transition: 0.3s;      /* Makes the hover/active state smooth */
+}
+
+.nav-item.active {
+    color: var(--primary-green); /* Highlights the page you are on */
+}
+
+.nav-item span {
+    font-size: 1.4rem;    /* Makes the emojis bigger */
+    margin-bottom: 4px;
+}
