@@ -1,53 +1,80 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bigname_M | contact</title>
-    
-    <link rel="stylesheet" href="Big.css">
-    <link rel="icon" type="image/png" href="imageslogo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get a Free Quote | Bigname_M Creative</title>
+  <meta name="description" content="Tell us about your project and get a custom quote from Bigname_M Creative. Web Design, SEO, and Digital Strategy for Nigerian businesses.">
+  <link rel="stylesheet" href="Big.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
 </head>
-<body><nav class="navbar" aria-label="Main Navigation Menu">
-        <div class="logo">
-    <a href="index.html" aria-label="Go to Home Page">
-        <img src="imageslogo.png" alt="Bigname_M Creative Official Logo" width="160" height="40" style="height: 40px; width: auto;">
-    </a>
-</div>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="Bigservice.html">Services</a></li>
-          <li><a href="Bigport.html">portfolio</a></li>
-          <li><a href="Bigcont.html" class="active" class="nav-btn">Get a Quote</a></li>
-        </ul>
-      </nav>
-      <section class="contact-page">
+<body>
+
+  <nav class="navbar" aria-label="Main Navigation Menu">
+    <div class="logo">
+      <a href="index.html" aria-label="Go to Home Page">
+        <img src="images/logo.png" alt="Bigname_M Creative Official Logo" width="160" height="40" style="height: 40px; width: auto;">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Bigservice.html">Services</a></li>
+      <li><a href="Bigport.html">Portfolio</a></li>
+      <li><a href="Bigcont.html" class="active nav-btn">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <section class="contact-page">
+
+    <!-- TRUST SIGNAL STRIP -->
+    <div class="trust-strip">
+      <span>⚡ Fast Response</span>
+      <span>🔒 Your Info is Safe</span>
+      <span>🇳🇬 Nigerian Business Friendly</span>
+    </div>
+
     <h2>Let's Start Your Project</h2>
-    <p>Tell us about your goals and we'll get back to you with a custom quote.</p>
-   <form action="https://formspree.io/f/mjgazerz" method="POST">
-  <div class="form-group">
-    <label>Full Name</label>
-    <input type="text" name="name" placeholder="Full Name" required>
-  </div>
+    <p>Tell us about your goals and we'll get back to you with a custom quote within 24 hours.</p>
 
-  <div class="form-group">
-    <label>Email Address</label>
-    <input type="email" name="email" placeholder="Email Address" required>
-  </div>
+    <form action="https://formspree.io/f/mjgazerz" method="POST">
 
-  <div class="form-group">
-    <label>Project Type</label>
-    <select name="project_type">
-      <option value="Web Design">Web Design</option>
-      <option value="SEO Audit">SEO Audit</option>
-      <option value="Smart Invites">Smart Invites</option>
-    </select>
-  </div>
+      <!-- Honeypot — bot trap, do not remove -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-  <div class="form-group">
-    <label>Message</label>
-    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-  </div>
-  <button type="submit" class="submit-btn">Send Request</button>
-</form>
-</section>
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="name" placeholder="e.g. Chidi Okeke" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="e.g. chidi@gmail.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="project_type">Project Type</label>
+        <select id="project_type" name="project_type">
+          <option value="" disabled selected>-- Select a Service --</option>
+          <option value="Web Design">Web Design</option>
+          <option value="SEO Audit">SEO Audit</option>
+          <option value="Smart Invites">Smart Invites</option>
+          <option value="Other">Other / Not Sure Yet</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Tell Us About Your Project</label>
+        <textarea id="message" name="message" placeholder="What do you need built? What's your timeline? Any budget in mind?" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Get My Free Quote →</button>
+
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2026 Bigname_M Creative. All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
