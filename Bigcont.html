@@ -75,6 +75,20 @@
   <footer>
     <p>© 2026 Bigname_M Creative. All Rights Reserved</p>
   </footer>
+  <script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks  = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>
