@@ -3,6 +3,15 @@
    Brand: Gold & Dark
    Author: Bigname_M Creative
    Last Updated: 2026
+   ============================================================
+
+   REQUIREMENT 1 — META VIEWPORT TAG
+   Add this exact tag inside <head> on EVERY HTML page.
+   Without it, mobile browsers zoom out and shrink your site:
+
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   ============================================================ */
 
 /* --- 1. BRAND TOKENS (Single Source of Truth) --- */
 :root {
@@ -521,6 +530,59 @@ footer p {
 
 .category-block:nth-child(2) .category-title {
   color: var(--sky-blue);
+}
+
+/* Page header — used on interior pages */
+.page-header {
+  padding: 50px 20px 30px;
+  background: var(--dark-bg);
+  text-align: center;
+}
+
+.page-header h1 {
+  color: var(--gold-deep);
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Top row inside project card — badge + tag */
+.project-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+/* Empty / coming soon card */
+.project-card--empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 40px 25px;
+  border-style: dashed;
+}
+
+/* Impact metric inside project card */
+.metric {
+  text-align: center;
+}
+
+.metric-value {
+  display: block;
+  color: var(--gold);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.metric-label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 /* Fixed: Merged duplicate .project-card into one clean block */
