@@ -3,7 +3,6 @@
    Brand: Gold & Dark
    Author: Bigname_M Creative
    Last Updated: 2026
-   ============================================================ */
 
 /* --- 1. BRAND TOKENS (Single Source of Truth) --- */
 :root {
@@ -32,6 +31,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* REQUIREMENT 2 — Fluid base: no fixed widths at root level */
+  width: 100%;
 }
 
 body {
@@ -41,8 +42,10 @@ body {
   color: var(--text-light);
   text-align: center;
   animation: fadeIn 0.8s ease-in;
-  /* Prevent horizontal overflow on mobile */
+  /* REQUIREMENT 4 — Overflow Prevention: stops side-scrolling on Android */
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 @keyframes fadeIn {
@@ -50,9 +53,20 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* REQUIREMENT 4 — All images are fluid. Never overflow their container */
 img {
   max-width: 100%;
+  height: auto;
   display: block;
+}
+
+/* REQUIREMENT 2 — Fluid container utility class.
+   Use class="container" on any section wrapper */
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 a {
@@ -98,12 +112,15 @@ header p {
 }
 
 /* --- 4. NAVIGATION --- */
+/* REQUIREMENT 3 — Header Fix: sticky nav, never hidden, always visible */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   height: var(--nav-height);
+  /* Fluid: no fixed width — stretches to 100% of any screen */
+  width: 100%;
   background: var(--card-bg);
   position: sticky;
   top: 0;
@@ -116,7 +133,7 @@ header p {
   align-items: center;
 }
 
-/* Desktop Nav Links */
+/* Desktop Nav Links — horizontal row */
 .nav-links {
   display: flex;
   list-style: none;
@@ -126,7 +143,7 @@ header p {
 
 .nav-links a {
   color: var(--text-light);
-  font-size: 0.95rem; /* Fixed: was 0.8rem — too small for mobile */
+  font-size: 0.95rem;
   font-weight: bold;
   transition: color 0.3s;
   padding: 5px 0;
@@ -143,13 +160,13 @@ header p {
 }
 
 /* CTA Nav Button */
+/* REQUIREMENT 5 — 'Get a Quote' minimum 44px tap target */
 .nav-btn {
   background: var(--gold);
   color: var(--black) !important;
   padding: 8px 16px;
   border-radius: 4px;
   font-weight: bold;
-  /* Minimum tap target for mobile */
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -160,7 +177,7 @@ header p {
   color: var(--black) !important;
 }
 
-/* Hamburger Button — hidden on desktop */
+/* REQUIREMENT 3 — Hamburger: hidden on desktop, shown on mobile */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -169,7 +186,7 @@ header p {
   background: none;
   border: none;
   padding: 8px;
-  /* Minimum tap target */
+  /* Minimum tap target — thumb-friendly */
   min-width: 44px;
   min-height: 44px;
   justify-content: center;
@@ -185,7 +202,7 @@ header p {
   transition: all 0.3s ease;
 }
 
-/* Hamburger Active State (X) */
+/* Hamburger animates into X when menu is open */
 .hamburger.active span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -592,100 +609,188 @@ footer p {
   color: var(--black);
 }
 
-/* --- 13. RESPONSIVE — MOBILE FIRST --- */
+/* --- 13. RESPONSIVE SURGERY — MOBILE FIRST --- */
+/*
+   BREAKPOINTS:
+   768px  = Tablet & below (most Android phones land here)
+   400px  = Small phones — Ota/Lagos 360px baseline
+*/
 
-/* Tablet and below */
+/* ---- TABLET & PHONE (max 768px) ---- */
 @media (max-width: 768px) {
 
+  /* Typography scale down */
   h1 { font-size: 1.8rem; }
   h2 { font-size: 1.5rem; }
 
-  /* Show hamburger, hide nav links */
+  /* REQUIREMENT 3 — Invisible Header Fix:
+     Show the hamburger button, hide the horizontal link row */
   .hamburger {
     display: flex;
   }
 
+  /* REQUIREMENT 3 — Nav vertical stack:
+     Links drop below the navbar in a column, not squashed inline */
   .nav-links {
-    display: none;
-    flex-direction: column;
+    display: none;                  /* Hidden until hamburger is tapped */
+    flex-direction: column;         /* Vertical stack — readable on phones */
     position: absolute;
     top: var(--nav-height);
     left: 0;
     right: 0;
+    /* REQUIREMENT 2 — Fluid: stretches full screen width, no fixed px */
+    width: 100%;
     background: var(--card-bg);
     padding: 20px;
-    gap: 15px;
+    gap: 0;
     border-bottom: 2px solid var(--gold);
     z-index: 999;
   }
 
+  /* JS toggles this class to open the menu */
   .nav-links.open {
     display: flex;
   }
 
+  /* Each link is full-width and thumb-tappable */
+  .nav-links li {
+    width: 100%;
+  }
+
   .nav-links a {
     font-size: 1rem;
-    padding: 10px 0;
+    padding: 14px 0;              /* Generous tap target vertically */
     border-bottom: 1px solid var(--border);
     width: 100%;
+    display: block;
   }
 
   .nav-links li:last-child a {
     border-bottom: none;
   }
 
-  /* Full-width form on mobile */
-  .contact-page form,
-  .quote-form {
-    padding: 20px 15px;
+  /* REQUIREMENT 5 — 'Get a Quote' full width on mobile for easy tap */
+  .nav-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+    border-radius: 4px;
+    margin-top: 5px;
   }
 
-  /* Stack impact metrics vertically */
+  /* REQUIREMENT 2 — Fluid containers: remove any fixed widths */
+  .portfolio-container,
+  .contact-page form,
+  .quote-form,
+  .service-block,
+  .case-study {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 15px;
+    margin: 0 auto 20px auto;
+  }
+
+  /* REQUIREMENT 4 — All images fluid on mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+  }
+
+  /* Stack impact metrics vertically on mobile */
   .impact-metrics {
     flex-direction: column;
     align-items: center;
   }
 
-  /* Trust strip stack */
+  /* Trust strip stacks vertically */
   .trust-strip {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
-  /* Card horizontal scroll stays — correct on mobile */
+  /* Card horizontal scroll stays — this is correct UX on mobile */
   .card-container {
     padding: 15px;
   }
 
-  /* Portfolio full width */
-  .portfolio-container {
-    padding: 20px 15px;
-  }
-}
-
-/* Small phones — 360px baseline (Ota/Lagos users) */
-@media (max-width: 400px) {
-
-  h1 { font-size: 1.5rem; }
-
-  .hero-section {
-    padding: 40px 15px 30px;
-  }
-
+  /* REQUIREMENT 5 — WhatsApp CTA button full width, thumb-friendly */
   .whatsapp-btn {
     width: 100%;
     justify-content: center;
     font-size: 1rem;
     padding: 14px 20px;
+    min-height: 44px;
   }
 
-  .card {
-    width: 160px;
-    min-width: 160px;
+  /* REQUIREMENT 5 — Submit button already 100% width, confirm 44px */
+  .submit-btn {
+    min-height: 48px; /* Slightly more generous on mobile */
+    font-size: 1.05rem;
   }
 
-  .navbar {
-    padding: 0 15px;
+  /* REQUIREMENT 5 — Portfolio buttons full width on mobile */
+  .btn-live,
+  .view-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
   }
 }
+
+/* ---- SMALL PHONES — 360px baseline (Ota/Lagos market) ---- */
+@media (max-width: 400px) {
+
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.25rem; }
+
+  .hero-section {
+    padding: 40px 15px 30px;
+  }
+
+  /* Tighten navbar padding on very small screens */
+  .navbar {
+    padding: 0 12px;
+  }
+
+  /* Tighter card width to show peek of next card */
+  .card {
+    width: 150px;
+    min-width: 150px;
+  }
+
+  /* Ensure form inputs are easy to tap */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 1rem;        /* Prevents iOS zoom-in on focus */
+    padding: 12px 10px;
+  }
+
+  /* Smaller skill tags on tiny screens */
+  .skill-tag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
+
+/* ---- HAMBURGER JAVASCRIPT HOOK ----
+   Add this script before </body> on every HTML page:
+
+   <script>
+     const hamburger = document.querySelector('.hamburger');
+     const navLinks  = document.querySelector('.nav-links');
+     hamburger.addEventListener('click', () => {
+       hamburger.classList.toggle('active');
+       navLinks.classList.toggle('open');
+     });
+     // Close menu when a link is tapped
+     navLinks.querySelectorAll('a').forEach(link => {
+       link.addEventListener('click', () => {
+         hamburger.classList.remove('active');
+         navLinks.classList.remove('open');
+       });
+     });
+   </script>
+   ---- */
