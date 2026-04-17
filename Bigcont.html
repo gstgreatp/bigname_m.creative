@@ -10,12 +10,21 @@
 </head>
 <body>
 
+  <!-- ===== NAVIGATION ===== -->
   <nav class="navbar" aria-label="Main Navigation Menu">
     <div class="logo">
       <a href="index.html" aria-label="Go to Home Page">
-        <img src="images/logo.png" alt="Bigname_M Creative Official Logo" width="160" height="40" style="height: 40px; width: auto;">
+        <img src="imageslogo.png" alt="Bigname_M Creative Official Logo" width="160" height="40" style="height: 40px; width: auto;">
       </a>
     </div>
+
+    <!-- Hamburger button — shown on mobile only -->
+    <button class="hamburger" aria-label="Toggle Navigation Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="Bigservice.html">Services</a></li>
@@ -24,9 +33,10 @@
     </ul>
   </nav>
 
+  <!-- ===== CONTACT FORM SECTION ===== -->
   <section class="contact-page">
 
-    <!-- TRUST SIGNAL STRIP -->
+    <!-- Trust signals — builds confidence before form -->
     <div class="trust-strip">
       <span>⚡ Fast Response</span>
       <span>🔒 Your Info is Safe</span>
@@ -72,23 +82,36 @@
     </form>
   </section>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2026 Bigname_M Creative. All Rights Reserved</p>
+    <div class="social-links">
+      <a href="https://x.com/bigname_m" target="_blank" rel="noopener">X (Twitter)</a>
+      <a href="https://www.linkedin.com/in/osazee-uwubarmen-83956a272" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.tiktok.com/@bignamem2" target="_blank" rel="noopener">TikTok</a>
+    </div>
   </footer>
+
+  <!-- ===== HAMBURGER SCRIPT ===== -->
   <script>
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks  = document.querySelector('.nav-links');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('open');
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('open');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks  = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
     });
-  });
-</script>
+
+    // Close menu when any nav link is tapped
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 
 </body>
 </html>
