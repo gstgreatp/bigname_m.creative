@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gstgreatp.github.io/bigname_m.creative/sitemap.xml
