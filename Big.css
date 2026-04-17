@@ -474,6 +474,13 @@ footer p {
 }
 
 /* --- 11. SERVICES PAGE --- */
+.services-detail {
+  padding: 20px 20px 60px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .service-block {
   background: var(--card-bg);
   border-left: 5px solid var(--gold);
@@ -491,6 +498,33 @@ footer p {
   border-radius: 5px;
   font-size: 0.7rem;
   font-weight: bold;
+}
+
+/* Benefit list inside service blocks */
+.benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+}
+
+.benefit-list li {
+  color: var(--text-muted);
+  padding: 6px 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.benefit-list li:last-child {
+  border-bottom: none;
+}
+
+/* CTA section on homepage */
+.cta-section {
+  padding: 60px 20px;
+  background: var(--card-bg);
+  text-align: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .impact-metrics {
