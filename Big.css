@@ -22,7 +22,7 @@
   --card-bg:       #1a1a1a;
   --input-bg:      #252525;
   --text-light:    #eeeeee;
-  --text-muted:    #aaaaaa;
+  --text-muted:    #bbbbbb; /* Updated: passes WCAG AA contrast on dark bg */
   --border:        #333333;
   --border-light:  #444444;
   --sky-blue:      #00bfff;
@@ -716,8 +716,14 @@ footer p {
 @media (max-width: 768px) {
 
   /* Typography scale down */
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.5rem; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+
+  /* Hero title on mid-size phones */
+  .hero-section h1 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
 
   /* REQUIREMENT 3 — Invisible Header Fix:
      Show the hamburger button, hide the horizontal link row */
@@ -841,8 +847,16 @@ footer p {
   h1 { font-size: 1.4rem; }
   h2 { font-size: 1.25rem; }
 
+  /* FIX 1 — Hero title: stops 3-line wrap, stays on one or two clean lines */
+  .hero-section h1 {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    padding: 0 10px;
+    word-break: keep-all;
+  }
+
   .hero-section {
-    padding: 40px 15px 30px;
+    padding: 30px 15px 20px;
   }
 
   /* Tighten navbar padding on very small screens */
@@ -850,17 +864,24 @@ footer p {
     padding: 0 12px;
   }
 
-  /* Tighter card width to show peek of next card */
+  /* FIX 2 — Cards: smaller width so all 3 are visible on first load */
   .card {
-    width: 150px;
-    min-width: 150px;
+    width: 130px;
+    min-width: 130px;
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .card-container {
+    gap: 10px;
+    padding: 10px 15px;
   }
 
   /* Ensure form inputs are easy to tap */
   .form-group input,
   .form-group select,
   .form-group textarea {
-    font-size: 1rem;        /* Prevents iOS zoom-in on focus */
+    font-size: 1rem;
     padding: 12px 10px;
   }
 
